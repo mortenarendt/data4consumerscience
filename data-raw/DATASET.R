@@ -47,8 +47,13 @@ beerliking <- rio::import('~/Dropbox/Backup/MyDocumentsOnC/Course and teaching/T
 yogurt <- rio::import('~/Dropbox/Backup/MyDocumentsOnC/Course and teaching/Thematic_FoodInnovationHealth/data/ConsumerData_Yoghurt.csv') %>%
   mutate(sessiondate = SessionDate %>% factor(labels = c('day1','day2'))) %>%
   select(Consumer:ConsumerGroup,sessiondate,ProductName:Liking)
-table(yogurt$sessiondate,yogurt$SessionDate)
+# table(yogurt$sessiondate,yogurt$SessionDate)
 
+tempetotemperature <- rio::import('~/Dropbox/Backup/MyDocumentsOnC/Course and teaching/Thematic_FoodInnovationHealth/data/Tempeto data.xls', sheet = 'Unfolded data 1') %>% select(Productname,Product,Sousvidetemperature_C:Stout)
+#tempetotemperature %>% head
+
+tempetofermentation <- rio::import('~/Dropbox/Backup/MyDocumentsOnC/Course and teaching/Thematic_FoodInnovationHealth/data/Tempeto data.xls', sheet = 'Unfolded data 2') %>% select(Productname,Product,Culture:Assessor,id,X1:Miso)
+#tempetofermentation %>% head
 
 
 usethis::use_data(plantbaseddiet, overwrite = TRUE)
@@ -62,7 +67,8 @@ usethis::use_data(beercata, overwrite = TRUE)
 usethis::use_data(beerdemo, overwrite = TRUE)
 usethis::use_data(beerliking, overwrite = TRUE)
 usethis::use_data(yogurt, overwrite = TRUE)
-
+usethis::use_data(tempetofermentation, overwrite = TRUE)
+usethis::use_data(tempetotemperature, overwrite = TRUE)
 
 
 usethis::use_r("plantbaseddiet")

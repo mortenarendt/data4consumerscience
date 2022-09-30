@@ -38,11 +38,16 @@ chili <- Chili
 carrot <- readxl::read_excel("~/Dropbox/Backup/MyDocumentsOnC/Course and teaching/Meal Systems and Technology/data/carrot/mst.xls", col_types = c("numeric", "text", "text", "numeric", "numeric", "numeric", "numeric", "numeric", "numeric", "numeric", "numeric", "numeric", "numeric", "numeric", "numeric"))
 
 ## From TFIH
-beercata <- rio::import('~/Dropbox/Backup/MyDocumentsOnC/Course and teaching/Thematic_FoodInnovationHealth/data/Beer_XYZmatrix.xlsx',sheet = 'X unfolded') %>%
-  dplyr::select(-`Unique ID`)
-beerdemo <- rio::import('~/Dropbox/Backup/MyDocumentsOnC/Course and teaching/Thematic_FoodInnovationHealth/data/Beer_XYZmatrix.xlsx',sheet = 'Z Background', skip = 1)
-beerliking <- rio::import('~/Dropbox/Backup/MyDocumentsOnC/Course and teaching/Thematic_FoodInnovationHealth/data/Beer_XYZmatrix.xlsx',sheet = 'Y (long thin)', skip = 1) %>%
-  dplyr::select(-`missing data points`)
+# beercata <- rio::import('~/Dropbox/Backup/MyDocumentsOnC/Course and teaching/Thematic_FoodInnovationHealth/data/Beer_XYZmatrix.xlsx',sheet = 'X unfolded') %>%
+#   dplyr::select(-`Unique ID`)
+# beerdemo <- rio::import('~/Dropbox/Backup/MyDocumentsOnC/Course and teaching/Thematic_FoodInnovationHealth/data/Beer_XYZmatrix.xlsx',sheet = 'Z Background', skip = 1)
+# beerliking <- rio::import('~/Dropbox/Backup/MyDocumentsOnC/Course and teaching/Thematic_FoodInnovationHealth/data/Beer_XYZmatrix.xlsx',sheet = 'Y (long thin)', skip = 1) %>%
+#   dplyr::select(-`missing data points`)
+
+beercata <- rio::import('~/Dropbox/Backup/MyDocumentsOnC/Course and teaching/DataAnalysis_ConsumerScience/dataanalyssisconsumerscience/DatasetRbook.xlsx',sheet = 'BeerCATA')
+beerdemo <-  rio::import('~/Dropbox/Backup/MyDocumentsOnC/Course and teaching/DataAnalysis_ConsumerScience/dataanalyssisconsumerscience/DatasetRbook.xlsx',sheet = 'BeerBackground') #, skip = 1)
+beerliking <-  rio::import('~/Dropbox/Backup/MyDocumentsOnC/Course and teaching/DataAnalysis_ConsumerScience/dataanalyssisconsumerscience/DatasetRbook.xlsx',sheet = 'BeerLiking')
+
 
 yogurt <- rio::import('~/Dropbox/Backup/MyDocumentsOnC/Course and teaching/Thematic_FoodInnovationHealth/data/ConsumerData_Yoghurt.csv') %>%
   mutate(sessiondate = SessionDate %>% factor(labels = c('day1','day2'))) %>%
@@ -63,9 +68,11 @@ usethis::use_data(acceptanceparsnip, overwrite = TRUE)
 usethis::use_data(canteen, overwrite = TRUE)
 usethis::use_data(chili, overwrite = TRUE)
 usethis::use_data(carrot, overwrite = TRUE)
+
 usethis::use_data(beercata, overwrite = TRUE)
 usethis::use_data(beerdemo, overwrite = TRUE)
 usethis::use_data(beerliking, overwrite = TRUE)
+
 usethis::use_data(yogurt, overwrite = TRUE)
 usethis::use_data(tempetofermentation, overwrite = TRUE)
 usethis::use_data(tempetotemperature, overwrite = TRUE)

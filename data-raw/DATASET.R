@@ -29,6 +29,17 @@ pasta <- Buffet_survey %>%
            factor(labels = substr(Surveyscales$answ[4:7],4,30))) %>%
   dplyr::select(Person,Day,StationName,Consumption,Did_you_take_food_from_both_Dish1_and_Dish2,Did_you_consider_the_proteincontent_of_the_dishes_you_choose,Why_did_you_consider_the_proteincontent,I_like_taste_of_pasta_with_legumes,I_like_taste_of_pasta_with_mushrooms,Pasta_with_legumes_is_visually_appealing,Pasta_with_mushrooms_is_visually_appealing)
 
+pastaold <- pasta
+pasta <- pastaold %>%
+  gather(var,val,I_like_taste_of_pasta_with_legumes:Pasta_with_mushrooms_is_visually_appealing) %>%
+  mutate(valnum = val %>% factor(levels = c('Disagree','More or less disagree','Neither agree nor disagree' ,'More or less agree' ,'Agree','Strongly agree')) %>% as.numeric(),
+         valnum = valnum + 1) %>%
+  select(-val) %>%
+  spread(var,valnum)
+
+# table(xx$val,xx$valnum)
+  # mutate(Why_did_you_consider_the_proteincontent %>% factor())
+
 load('~/Dropbox/Backup/MyDocumentsOnC/Course and teaching/Meal Systems and Technology/data/AcceptanceParsnip.RData')
 acceptanceparsnip <- AcceptanceParsnip
 load('~/Dropbox/Backup/MyDocumentsOnC/Course and teaching/Meal Systems and Technology/data/Canteengrade.RData')
@@ -60,6 +71,9 @@ tempetotemperature <- rio::import('~/Dropbox/Backup/MyDocumentsOnC/Course and te
 tempetofermentation <- rio::import('~/Dropbox/Backup/MyDocumentsOnC/Course and teaching/Thematic_FoodInnovationHealth/data/Tempeto data.xls', sheet = 'Unfolded data 2') %>% select(Productname,Product,Culture:Assessor,id,X1:Miso)
 #tempetofermentation %>% head
 
+## Add Beef data from sensory course
+beef <- rio::import('~/Dropbox/Backup/MyDocumentsOnC/Course and teaching/SensoryEvaluationofFood/Data/Data_Beef.xls')
+
 
 usethis::use_data(plantbaseddiet, overwrite = TRUE)
 usethis::use_data(pasta, overwrite = TRUE)
@@ -76,6 +90,7 @@ usethis::use_data(beerliking, overwrite = TRUE)
 usethis::use_data(yogurt, overwrite = TRUE)
 usethis::use_data(tempetofermentation, overwrite = TRUE)
 usethis::use_data(tempetotemperature, overwrite = TRUE)
+usethis::use_data(beef, overwrite = TRUE)
 
 
 usethis::use_r("plantbaseddiet")

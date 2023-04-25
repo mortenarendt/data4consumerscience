@@ -74,6 +74,16 @@ tempetofermentation <- rio::import('~/Dropbox/Backup/MyDocumentsOnC/Course and t
 ## Add Beef data from sensory course
 beef <- rio::import('~/Dropbox/Backup/MyDocumentsOnC/Course and teaching/SensoryEvaluationofFood/Data/Data_Beef.xls')
 
+### add FCMR_survey
+fmcrsurvey <- rio::import('~/Dropbox/Backup/MyDocumentsOnC/Course and teaching/DataAnalysis_ConsumerScience/dataanalyssisconsumerscience/DatasetRbook.xlsx', which = 'FMCR_Survey')
+
+# xx <- fmcrsurvey %>%
+  # gather(var,val,I_will_only_buy_products_at_a_reduced_price:I_am_able_to_prepare_a_soup) %>%
+  # mutate(val = factor(val, levels = c()))
+
+# c("Disagree extremely","Completely disagree","Disagree","Disagree slightly","Neutral","Agree slightly","Agree","Completely agree","Agree extremely","Neither disagree nor agree")
+
+# xx$val %>% table()
 
 usethis::use_data(plantbaseddiet, overwrite = TRUE)
 usethis::use_data(pasta, overwrite = TRUE)
@@ -92,7 +102,8 @@ usethis::use_data(tempetofermentation, overwrite = TRUE)
 usethis::use_data(tempetotemperature, overwrite = TRUE)
 usethis::use_data(beef, overwrite = TRUE)
 
+usethis::use_data(fmcrsurvey, overwrite = TRUE)
 
 usethis::use_r("plantbaseddiet")
 usethis::use_r("pork")
-# to appear: Do it for all the other datasets
+

@@ -77,6 +77,12 @@ beef <- rio::import('~/Dropbox/Backup/MyDocumentsOnC/Course and teaching/Sensory
 ### add FCMR_survey
 fmcrsurvey <- rio::import('~/Dropbox/Backup/MyDocumentsOnC/Course and teaching/DataAnalysis_ConsumerScience/dataanalyssisconsumerscience/DatasetRbook.xlsx', which = 'FMCR_Survey')
 
+### add data from Oat/Rye
+mstcontrol <- rio::import("~/Dropbox/DataAnalysis_ConsumerScience/dataanalyssisconsumerscience/data/Ibuffet_data_MST_ex (2024)/kontrol.csv")
+mstintervension <- rio::import("~/Dropbox/DataAnalysis_ConsumerScience/dataanalyssisconsumerscience/data/Ibuffet_data_MST_ex (2024)/Intervention.csv")
+mstquestionare <- rio::import("~/Dropbox/DataAnalysis_ConsumerScience/dataanalyssisconsumerscience/data/Ibuffet_data_MST_ex (2024)/questionare.csv")
+
+
 # xx <- fmcrsurvey %>%
   # gather(var,val,I_will_only_buy_products_at_a_reduced_price:I_am_able_to_prepare_a_soup) %>%
   # mutate(val = factor(val, levels = c()))
@@ -103,6 +109,10 @@ usethis::use_data(tempetotemperature, overwrite = TRUE)
 usethis::use_data(beef, overwrite = TRUE)
 
 usethis::use_data(fmcrsurvey, overwrite = TRUE)
+
+usethis::use_data(mstcontrol ,overwrite = TRUE)
+usethis::use_data(mstintervension ,overwrite = TRUE)
+usethis::use_data(mstquestionare ,overwrite = TRUE)
 
 usethis::use_r("plantbaseddiet")
 usethis::use_r("pork")
